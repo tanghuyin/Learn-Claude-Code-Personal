@@ -106,6 +106,13 @@ TOOL_HANDLERS = {
     "delete_file": lambda inp: delete_file(inp["path"]),
 }
 
+# Permission Level 1: Hard deny list
+# Permission Level 2: Pending allow/deny list - need user's permission
+
+def check_permissions(block) -> bool:
+    return True
+
+
 
 def agent_loop(messages: list):
     while True:
@@ -128,6 +135,12 @@ def agent_loop(messages: list):
         for block in response.content:
             if block.type == "tool_use":
                 print(f"\033[33m[{block.name}] {block.input}\033[0m")
+                # check permission before using the tool
+                if not check_permissions(block):
+                    results.append({"type": "tool_result", "tool_use_id": block.id,
+                                "content": "Permission denied."})
+                    continue
+
                 handler = TOOL_HANDLERS.get(block.name)
                 if handler:
                     output = handler(block.input)
