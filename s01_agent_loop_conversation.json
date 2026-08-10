@@ -1,0 +1,38 @@
+[
+  {
+    "role": "user",
+    "content": "What is the current git branch?"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "type": "tool_use",
+        "id": "toolu_01P3UAEQVaxHMEf1VHcEcQFF",
+        "name": "bash",
+        "input": {
+          "command": "git branch --show-current"
+        }
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01P3UAEQVaxHMEf1VHcEcQFF",
+        "content": "main"
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "The current git branch is **main**."
+      }
+    ]
+  }
+]
