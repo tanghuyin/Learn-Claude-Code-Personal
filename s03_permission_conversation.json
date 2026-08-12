@@ -1,0 +1,38 @@
+[
+  {
+    "role": "user",
+    "content": "can you get sudo?"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "type": "tool_use",
+        "id": "toolu_016k9b6YH2867g63K8LvRZeh",
+        "name": "bash",
+        "input": {
+          "command": "sudo -n whoami 2>&1"
+        }
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_016k9b6YH2867g63K8LvRZeh",
+        "content": "Permission denied. Do not retry this action without user approval."
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "No, I cannot get `sudo` access in this environment. The attempt was blocked with **\"Permission denied.\"**\n\nThis is expected behavior — the coding agent operates with limited, non-elevated privileges for safety reasons. If you need something that requires `sudo`, you would need to run it yourself in your terminal."
+      }
+    ]
+  }
+]
